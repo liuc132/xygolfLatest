@@ -1,15 +1,14 @@
 # xygolfLatest
 巡鹰调度端最新版第一次备份
-其中最新调度版本中自定义了一些控件，视图
-1、自定义了一个uialertview，以及其通过手动添加布局的实现
-2、含有输入框的视图在需要输入内容的时候上移输入框的代码
-3、在UIViewcontroller添加tableview以及navigationviewcontroleller的时候，因为添加顺序的问题导致在切换到别的视图之后再切换回来的时候出现在tableview的
-顶部有一块空白（大概是64的高度，navigationbar+statusbar）的bug，通过设置self.automaticallyAdjustsScrollViewInsets = NO;加以解决
-4、在导航栏中来回切换搜索框，与右侧的navigationitem
-5、包含了如何设置textfield的placeholder的字体颜色
-6、含有中国天气的一天三小时预报的天气获取及通过当前的位置来加以解析的功能
-7、GPS信息的获取
-8、腾讯的QQ第三方登录的集成
-9、uiview的category的部分功能的扩展
-10、手机号的校验，通过谓词（正则表达式）来进行判断，判断的时候是在点击登录的时候
-11、项目中也集成了afnetworking框架，它可以很好的实现网络的条件的判断以及http网络的请求
+＃其中最新调度版本中自定义了一些控件，视图
+#1、自定义了一个uialertview，以及其通过手动添加布局的实现
+#2、含有输入框的视图在需要输入内容的时候上移输入框的代码
+#3、在UIViewcontroller添加tableview以及navigationviewcontroleller的时候，因为添加顺序的问题导致在切换到别的视图之后再切换回来的时候出现在tableview的顶部有一块空白（大概是64的高度，navigationbar+statusbar）的bug，通过设置self.automaticallyAdjustsScrollViewInsets = NO;加以解决
+＃4、在导航栏中来回切换搜索框，与右侧的navigationitem
+#5、包含了如何设置textfield的placeholder的字体颜色
+#6、含有中国天气的一天三小时预报的天气获取及通过当前的位置来加以解析的功能
+#7、GPS信息的获取
+#8、腾讯的QQ第三方登录的集成
+#9、uiview的category的部分功能的扩展
+#10、手机号的校验，通过谓词（正则表达式）来进行判断，判断的时候是在点击登录的时候
+#11、项目中也集成了afnetworking框架，它可以很好的实现网络的条件的判断以及http网络的请求
