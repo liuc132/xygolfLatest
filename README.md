@@ -4,7 +4,7 @@
 #1、自定义了一个uialertview，以及其通过手动添加布局的实现
 #2、含有输入框的视图在需要输入内容的时候上移输入框的代码
 #3、在UIViewcontroller添加tableview以及navigationviewcontroleller的时候，因为添加顺序的问题导致在切换到别的视图之后再切换回来的时候出现在tableview的顶部有一块空白（大概是64的高度，navigationbar+statusbar）的bug，通过设置self.automaticallyAdjustsScrollViewInsets = NO;加以解决
-＃4、在导航栏中来回切换搜索框，与右侧的navigationitem
+#4、在导航栏中来回切换搜索框，与右侧的navigationitem
 #5、包含了如何设置textfield的placeholder的字体颜色
 #6、含有中国天气的一天三小时预报的天气获取及通过当前的位置来加以解析的功能
 #7、GPS信息的获取
