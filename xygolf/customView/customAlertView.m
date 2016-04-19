@@ -18,7 +18,9 @@ typedef void (^CustomCompletionAnimationBlock)(BOOL finished);
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
-    
+    if ([keyPath isEqualToString:@"bounds"]) {
+        contentView.frame = self.bounds;
+    }
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -39,7 +41,7 @@ typedef void (^CustomCompletionAnimationBlock)(BOOL finished);
     //add size observer
     [self addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:NULL];
     
-    //constrain the size and width based on the initial frame
+    //constraint the size and width based on the initial frame
     self.translatesAutoresizingMaskIntoConstraints = NO;
     CGFloat width = self.frame.size.width;
     CGFloat height = self.frame.size.height;

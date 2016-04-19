@@ -92,7 +92,6 @@
     //设置次属性是为了避免因为navigationcontroller与自定义的tableview添加的顺序问题而造成的视图来回切换时出现的tableview顶部出现空白（高度为64，navigationbar+statusbar）的bug
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    
     self.navigationItem.rightBarButtonItem = nil;
     
 }

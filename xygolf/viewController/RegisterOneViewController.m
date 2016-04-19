@@ -10,10 +10,13 @@
 #import "AFHTTPSessionManager.h"
 #import "AFNetworkReachabilityManager.h"
 #import "customAlertView.h"
+#import "ErrorStateAlertView.h"
 
 @interface RegisterOneViewController ()<UIGestureRecognizerDelegate>
 {
     customAlertView *cusAlert;
+    ErrorStateAlertView *errorAlert;
+    
     UIView *defaultBackView;
 }
 
@@ -330,13 +333,21 @@
     
 }
 
+- (void)errAlertViewSetting:(NSString *)noticeString
+{
+    errorAlert = [[ErrorStateAlertView alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width - 20, 64)];
+    [self.view addSubview:errorAlert];
+    errorAlert.errStateLabel.text = noticeString;
+    [errorAlert.errStateLabel setFont:[UIFont systemFontOfSize:16]];
+    [errorAlert.errStateLabel setTextColor:[UIColor colorWithRed:1.0 green:101/255.0 blue:101/255.0 alpha:1.0]];
+    [errorAlert showErrorStateAlertDuration];
+}
+
 - (IBAction)getCheckMsgCode:(UIButton *)sender {
     NSString *theMobileNum = _mobileTextField.text;
     
     if (![self validateMobile:theMobileNum] ||  (theMobileNum.length <= 10)) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"输入号码有误" message:nil delegate:self
-                                              cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [alert show];
+        [self errAlertViewSetting:@"输入号码有误"];
         return;
     }
     

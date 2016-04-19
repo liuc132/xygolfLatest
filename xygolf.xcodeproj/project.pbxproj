@@ -54,6 +54,7 @@
 		5B98F42F1CBF45F300B95E93 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B98F42D1CBF45F300B95E93 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		5B98F4301CBF45F300B95E93 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B98F42E1CBF45F300B95E93 /* TencentOpenAPI.framework */; };
 		5BAF70471CC5F20100F1FA3D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BAF70491CC5F20100F1FA3D /* InfoPlist.strings */; };
+		5BAF704E1CC61D6800F1FA3D /* ErrorStateAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF704D1CC61D6800F1FA3D /* ErrorStateAlertView.m */; };
 		5BBE4D4C1CBE4C81002F622C /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE4D4B1CBE4C81002F622C /* PersonalCenterViewController.m */; };
 		5BD210E61CAA29E8001A8F97 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD210E51CAA29E8001A8F97 /* Security.framework */; };
 		5BD210E81CAA29F7001A8F97 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD210E71CAA29F7001A8F97 /* libiconv.tbd */; };
@@ -169,6 +170,8 @@
 		5B98F42E1CBF45F300B95E93 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		5BAF70481CC5F20100F1FA3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5BAF704A1CC5FC6800F1FA3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5BAF704C1CC61D6800F1FA3D /* ErrorStateAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ErrorStateAlertView.h; path = xygolf/customView/ErrorStateAlertView.h; sourceTree = "<group>"; };
+		5BAF704D1CC61D6800F1FA3D /* ErrorStateAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ErrorStateAlertView.m; path = xygolf/customView/ErrorStateAlertView.m; sourceTree = "<group>"; };
 		5BBE4D4A1CBE4C81002F622C /* PersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalCenterViewController.h; path = viewController/PersonalCenterViewController.h; sourceTree = "<group>"; };
 		5BBE4D4B1CBE4C81002F622C /* PersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonalCenterViewController.m; path = viewController/PersonalCenterViewController.m; sourceTree = "<group>"; };
 		5BD210E51CAA29E8001A8F97 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -446,6 +449,7 @@
 		5B88962C1CA8F74E00FB7EE4 /* customLibary */ = {
 			isa = PBXGroup;
 			children = (
+				5BAF704B1CC61D2400F1FA3D /* errorstateView */,
 				5B883A931CC1F322009353A3 /* customAlertView */,
 				5B98F3ED1CBF29F600B95E93 /* segementControl */,
 				5B10AA951CBD1EAB000FFAF3 /* andyScroll */,
@@ -546,6 +550,15 @@
 				5BDFA1681CC4690900725514 /* EachHoleMoreInfo.m */,
 			);
 			name = eachHoleMoreInfo;
+			sourceTree = "<group>";
+		};
+		5BAF704B1CC61D2400F1FA3D /* errorstateView */ = {
+			isa = PBXGroup;
+			children = (
+				5BAF704C1CC61D6800F1FA3D /* ErrorStateAlertView.h */,
+				5BAF704D1CC61D6800F1FA3D /* ErrorStateAlertView.m */,
+			);
+			name = errorstateView;
 			sourceTree = "<group>";
 		};
 		5BBE4D461CBE4BEB002F622C /* personalCenter */ = {
@@ -715,6 +728,7 @@
 				5B3FA1DB1CA2249100D8FE54 /* LogInViewController.m in Sources */,
 				5B0CFF071CAB6832008D923A /* CustomMainViewController.m in Sources */,
 				5B10AA8B1CBCE2C6000FFAF3 /* AFAutoPurgingImageCache.m in Sources */,
+				5BAF704E1CC61D6800F1FA3D /* ErrorStateAlertView.m in Sources */,
 				5B10AA881CBCE2C6000FFAF3 /* AFURLRequestSerialization.m in Sources */,
 				5B942ABA1CAD139800F684E8 /* GetGPSLocationData.m in Sources */,
 				5B10AA911CBCE2C6000FFAF3 /* UIProgressView+AFNetworking.m in Sources */,
