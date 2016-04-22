@@ -38,7 +38,7 @@
 		5B3FA1E01CA2249100D8FE54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B3FA1DF1CA2249100D8FE54 /* Assets.xcassets */; };
 		5B3FA1E31CA2249100D8FE54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B3FA1E11CA2249100D8FE54 /* LaunchScreen.storyboard */; };
 		5B3FA1EE1CA2249200D8FE54 /* xygolfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FA1ED1CA2249200D8FE54 /* xygolfTests.m */; };
-		5B40D8491CC9BC7D0033CD01 /* offlineMapData.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B40D8481CC9BC7D0033CD01 /* offlineMapData.bundle */; };
+		5B40D84F1CC9F5AD0033CD01 /* offlineMapData.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B40D84E1CC9F5AD0033CD01 /* offlineMapData.bundle */; };
 		5B48BF351CA4DF0B009EFCD3 /* TNPanNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B48BF341CA4DF0B009EFCD3 /* TNPanNavigationController.m */; };
 		5B549BE21CC8EE0A006AB700 /* HoleFunctionChangeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B549BE11CC8EE0A006AB700 /* HoleFunctionChangeView.m */; };
 		5B883A961CC1FC1C009353A3 /* customAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B883A951CC1FC1C009353A3 /* customAlertView.m */; };
@@ -145,7 +145,7 @@
 		5B3FA1E91CA2249200D8FE54 /* xygolfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xygolfTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3FA1ED1CA2249200D8FE54 /* xygolfTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = xygolfTests.m; sourceTree = "<group>"; };
 		5B3FA1EF1CA2249200D8FE54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5B40D8481CC9BC7D0033CD01 /* offlineMapData.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = offlineMapData.bundle; sourceTree = "<group>"; };
+		5B40D84E1CC9F5AD0033CD01 /* offlineMapData.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = offlineMapData.bundle; sourceTree = "<group>"; };
 		5B48BF331CA4DF0B009EFCD3 /* TNPanNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TNPanNavigationController.h; path = xygolf/TNPanNavigationController.h; sourceTree = "<group>"; };
 		5B48BF341CA4DF0B009EFCD3 /* TNPanNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TNPanNavigationController.m; path = xygolf/TNPanNavigationController.m; sourceTree = "<group>"; };
 		5B549BE01CC8EE0A006AB700 /* HoleFunctionChangeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HoleFunctionChangeView.h; path = customView/HoleFunctionChangeView.h; sourceTree = "<group>"; };
@@ -551,7 +551,7 @@
 		5B98F3F51CBF3CF500B95E93 /* offlineMapSource */ = {
 			isa = PBXGroup;
 			children = (
-				5B40D8481CC9BC7D0033CD01 /* offlineMapData.bundle */,
+				5B40D84E1CC9F5AD0033CD01 /* offlineMapData.bundle */,
 			);
 			name = offlineMapSource;
 			sourceTree = "<group>";
@@ -703,8 +703,8 @@
 				5B942ACA1CAD172C00F684E8 /* areaID.plist in Resources */,
 				5B942ACB1CAD172C00F684E8 /* Weather_phenomenonID.plist in Resources */,
 				5B3FA1E31CA2249100D8FE54 /* LaunchScreen.storyboard in Resources */,
-				5B40D8491CC9BC7D0033CD01 /* offlineMapData.bundle in Resources */,
 				5B942ACC1CAD172C00F684E8 /* weather_windDirectionID.plist in Resources */,
+				5B40D84F1CC9F5AD0033CD01 /* offlineMapData.bundle in Resources */,
 				5B3FA1E01CA2249100D8FE54 /* Assets.xcassets in Resources */,
 				5B98F42F1CBF45F300B95E93 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				5B98F3F31CBF3A6B00B95E93 /* ArcGIS.bundle in Resources */,

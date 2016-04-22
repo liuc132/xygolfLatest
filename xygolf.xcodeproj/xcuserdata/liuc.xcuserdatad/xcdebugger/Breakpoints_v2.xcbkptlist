@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "xygolf/LogInViewController.m"
-            timestampString = "482405328.30782"
+            timestampString = "483005090.527644"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "-LogInButton:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "xygolf/LogInViewController.m"
-            timestampString = "482405328.30782"
+            timestampString = "483005090.527644"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "-observeValueForKeyPath:ofObject:change:context:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "xygolf/viewController/CourseStateViewController.m"
-            timestampString = "482986268.075739"
+            timestampString = "483001089.491282"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "-observeValueForKeyPath:ofObject:change:context:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "xygolf/viewController/CourseStateViewController.m"
-            timestampString = "482987256.940456"
+            timestampString = "483001089.491282"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "643"
-            endingLineNumber = "643"
+            startingLineNumber = "682"
+            endingLineNumber = "682"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "xygolf/viewController/CourseStateViewController.m"
-            timestampString = "482987256.940456"
+            timestampString = "483001089.491282"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "578"
-            endingLineNumber = "578"
+            startingLineNumber = "617"
+            endingLineNumber = "617"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "xygolf/viewController/CourseStateViewController.m"
-            timestampString = "482987256.940456"
+            timestampString = "483001089.491282"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "581"
-            endingLineNumber = "581"
+            startingLineNumber = "620"
+            endingLineNumber = "620"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "xygolf/viewController/CourseStateViewController.m"
-            timestampString = "482987256.940456"
+            timestampString = "483001089.491282"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "511"
-            endingLineNumber = "511"
+            startingLineNumber = "550"
+            endingLineNumber = "550"
             landmarkName = "-contentViewSetting:andFrame:"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "xygolf/viewController/CourseStateViewController.m"
-            timestampString = "482987256.940456"
+            timestampString = "483001089.491282"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "446"
-            endingLineNumber = "446"
+            startingLineNumber = "485"
+            endingLineNumber = "485"
             landmarkName = "-contentViewSetting:andFrame:"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "xygolf/viewController/CourseStateViewController.m"
-            timestampString = "482987256.940456"
+            timestampString = "483001089.491282"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "528"
-            endingLineNumber = "528"
+            startingLineNumber = "567"
+            endingLineNumber = "567"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "xygolf/viewController/CourseStateViewController.m"
-            timestampString = "482987256.940456"
+            timestampString = "483001089.491282"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "434"
-            endingLineNumber = "434"
+            startingLineNumber = "473"
+            endingLineNumber = "473"
             landmarkName = "-tableView:heightForHeaderInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -233,30 +233,46 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "xygolf/customView/HoleFunctionChangeView.m"
-            timestampString = "482986489.826104"
+            filePath = "xygolf/viewController/CourseStateViewController.m"
+            timestampString = "483001089.491282"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "-confirmHoleChange"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "-callout:willShowForFeature:layer:mapPoint:"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "xygolf/customView/HoleFunctionChangeView.m"
-            timestampString = "482986771.650859"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "-confirmHoleChange"
-            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CourseStateViewController callout:willShowForFeature:layer:mapPoint:]"
+                  moduleName = "xygolf"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liuc/Documents/xygolf/xygolf/viewController/CourseStateViewController.m"
+                  timestampString = "482997897.341234"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "254"
+                  endingLineNumber = "254"
+                  offsetFromSymbolStart = "572">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__71-[CourseStateViewController callout:willShowForFeature:layer:mapPoint:]_block_invoke"
+                  moduleName = "xygolf"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liuc/Documents/xygolf/xygolf/viewController/CourseStateViewController.m"
+                  timestampString = "482997897.341367"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "255"
+                  endingLineNumber = "255"
+                  offsetFromSymbolStart = "92">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -51,6 +51,7 @@
 @property (strong, nonatomic) AGSGDBFeatureTable     *localHoleFeatureTable;
 @property (strong, nonatomic) AGSFeatureTableLayer   *localHoleFeatureTableLayer;
 @property (strong, nonatomic) AGSGraphicsLayer       *graphicLayer;
+//@property (strong, nonatomic) AGSGraphicsLayer       *selectHoleGraphicLayer;
 @property (strong, nonatomic) AGSQuery               *query;
 @property (strong, nonatomic) AGSQueryTask           *queryTask;
 @property (strong, nonatomic) AGSSketchGraphicsLayer *mySketchLayer;
@@ -98,7 +99,7 @@
     
     self.navigationItem.rightBarButtonItem = nil;
     //
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCourseHoleStateResponse:) name:@"dimissTheHoleFunction" object:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCourseHoleStateResponse:) name:@"showTheHoleFunction" object:self];
     
     
     
@@ -238,9 +239,6 @@
 
 - (BOOL)callout:(AGSCallout *)callout willShowForFeature:(id<AGSFeature>)feature layer:(AGSLayer<AGSHitTestable> *)layer mapPoint:(AGSPoint *)mapPoint
 {
-    __weak typeof(self) weakSelf = self;
-    //
-    [_graphicLayer removeAllGraphics];
     //
     NSDictionary *featureAttr = [feature allAttributes];
     
@@ -249,21 +247,22 @@
     self.query = [AGSQuery query];
     self.query.whereClause = querySQL;
     
-    if ([featureAttr[@"是球场"] integerValue] == 1) {
+    if (featureAttr[@"leixing"] == nil)
+    {
         [_localHoleFeatureTable queryResultsWithParameters:_query completion:^(NSArray *results, NSError *error) {
             if (results.count) {
                 AGSGDBFeature *curFeatrue = results[0];
                 NSDictionary *curDic = [curFeatrue allAttributes];
                 
-                AGSSimpleFillSymbol *fillSymbolView = [[AGSSimpleFillSymbol alloc] initWithColor:[[UIColor whiteColor] colorWithAlphaComponent:0.15] outlineColor:[UIColor blueColor]];
-                AGSGraphic *holeGraphic = [[AGSGraphic alloc] initWithGeometry:curDic[@"Shape"] symbol:fillSymbolView attributes:nil];
-                [weakSelf.graphicLayer addGraphic:holeGraphic];
+//                AGSSimpleFillSymbol *fillSymbolView = [[AGSSimpleFillSymbol alloc] initWithColor:[[UIColor whiteColor] colorWithAlphaComponent:0.15] outlineColor:[UIColor blueColor]];
+//                AGSGraphic *holeGraphic = [[AGSGraphic alloc] initWithGeometry:curDic[@"Shape"] symbol:fillSymbolView attributes:nil];
+//                [weakSelf.selectHoleGraphicLayer addGraphic:holeGraphic];
                 //将选择的球洞放大到屏幕中央
                 [_CoursemapView zoomToGeometry:curDic[@"Shape"] withPadding:120 animated:YES];
                 
                 //
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"dimissTheHoleFunction" object:self userInfo:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"showTheHoleFunction" object:self userInfo:nil];
                     
                 });
                 
@@ -279,7 +278,7 @@
 
 - (void)removeTheGraphics
 {
-    [_graphicLayer removeAllGraphics];
+//    [_graphicLayer removeAllGraphics];
 }
 
 
@@ -291,6 +290,8 @@
  */
 -(void)mapViewDidLoad:(AGSMapView *)mapView
 {
+    __weak typeof(self) weakSelf = self;
+    //
     [self.CoursemapView.locationDisplay startDataSource];
     self.CoursemapView.locationDisplay.autoPanMode = AGSLocationDisplayAutoPanModeDefault;
     self.CoursemapView.locationDisplay.wanderExtentFactor = 0.75;
@@ -299,6 +300,42 @@
     
     //set the midvertex symbol to nil to avoid the default circle symbol appearing in between vertices
     self.gpsSketchLayer.midVertexSymbol = nil;
+    
+    //
+    NSString *querySQL;
+    querySQL = [NSString stringWithFormat:@"QCM"];
+    self.query = [AGSQuery query];
+    self.query.whereClause = querySQL;
+    
+    [_localHoleFeatureTable queryResultsWithParameters:_query completion:^(NSArray *results, NSError *error) {
+        for (AGSGDBFeature *eachFeature in results) {
+            AGSGDBFeature *curFeatrue = eachFeature;
+            NSDictionary *curDic = [curFeatrue allAttributes];
+            
+            //Create the AGSSimpleFillSymbol and set it’s color
+            AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
+            myFillSymbol.color = [UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:0.15];
+            
+            //Create the AGSSimpleLineSymbol used for the outline
+            AGSSimpleLineSymbol* myOutlineSymbol = [AGSSimpleLineSymbol simpleLineSymbol];
+            myOutlineSymbol.color = [UIColor yellowColor];
+            myOutlineSymbol.width = 3;
+            
+            //set the outline property to myOutlineSymbol
+            myFillSymbol.outline = myOutlineSymbol;
+            
+            
+            AGSGraphic *holeGraphic = [[AGSGraphic alloc] initWithGeometry:curDic[@"Shape"] symbol:myFillSymbol attributes:nil];
+            [weakSelf.graphicLayer addGraphic:holeGraphic];
+        }
+        
+        
+        
+        
+        
+        
+        
+    }];
     
 }
 
@@ -318,7 +355,6 @@
     
 }
 
-
 - (void)createCourseStateViews
 {
 //    _backHalfAplphaView = [[UIView alloc] initWithFrame:self.view.bounds];
@@ -334,6 +370,11 @@
     
     HoleFunctionChangeView *holeFunctionView;
     
+    if ([holeFunctionView holeFunctionViewisShowing]) {
+        NSLog(@"...holeHasentered...");
+        return;
+    }
+    
     holeFunctionView = [[HoleFunctionChangeView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 20, 157)];
     holeFunctionView.delegate = self;
     holeFunctionView.backgroundColor = [UIColor whiteColor];
@@ -345,13 +386,11 @@
 
 - (void)changeCourseHoleStateResponse:(NSNotification *)notification
 {
-    if ([notification.name isEqualToString:@"dimissTheHoleFunction"]) {
+    if ([notification.name isEqualToString:@"showTheHoleFunction"]) {
         NSLog(@"...we have set confirm...");
         
         [self createCourseStateViews];
     }
-    
-    
     
 }
 

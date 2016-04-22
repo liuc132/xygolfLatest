@@ -56,6 +56,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    UIImage *backImage = [UIImage imageNamed:@"logBack_logRegister.png"];
+    self.view.layer.contents = (__bridge id _Nullable)(backImage.CGImage);
+    
     self.navigationController.navigationBarHidden = YES;
     //
     self.afnetworkingManager = [AFHTTPSessionManager manager];

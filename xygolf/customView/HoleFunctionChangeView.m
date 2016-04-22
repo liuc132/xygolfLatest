@@ -13,6 +13,8 @@
     UIView *contentView;
 }
 
+@property (assign, nonatomic) BOOL      isShowingHoleFunctionView;
+
 @end
 
 @implementation HoleFunctionChangeView
@@ -150,6 +152,11 @@
     }
 }
 
+- (BOOL)holeFunctionViewisShowing
+{
+    return _isShowingHoleFunctionView;
+}
+
 - (void)centerTheHoleFunctionView
 {
     if (self.superview == nil) {
@@ -175,6 +182,8 @@
 - (void)holeFunctionViewShow
 {
     //
+    _isShowingHoleFunctionView = YES;
+    //
     [self centerTheHoleFunctionView];
     
     [UIView animateWithDuration:0.2 animations:^{
@@ -187,6 +196,7 @@
 
 - (void)holeFunctionViewDismiss
 {
+    _isShowingHoleFunctionView = NO;
     [UIView animateWithDuration:0.2 animations:^{
         self.transform = CGAffineTransformMakeScale(1.1, 1.1);
     } completion:^(BOOL finished) {

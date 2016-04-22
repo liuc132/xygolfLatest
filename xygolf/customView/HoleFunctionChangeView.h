@@ -13,11 +13,10 @@
 
 
 
-
-
 - (void)holeFunctionViewShow;
 - (void)holeFunctionViewDismiss;
 
+- (BOOL)holeFunctionViewisShowing;
 
 
 @property (assign) id<CourseStateViewControllerDelegate> delegate;
