@@ -9,13 +9,15 @@
 #import "CourseStateViewController.h"
 #import "EachHoleMoreInfo.h"
 #import "xygolfmacroHeader.h"
+#import "HoleFunctionChangeView.h"
 
 #define CLIENT_ID   @"gKbc4lH2K27McsAe"
 
-@interface CourseStateViewController ()<AGSQueryTaskDelegate,AGSLayerDelegate,AGSCalloutDelegate,AGSMapViewLayerDelegate,AGSFeatureLayerQueryDelegate,AGSMapViewTouchDelegate,UIGestureRecognizerDelegate,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
+@interface CourseStateViewController ()<AGSQueryTaskDelegate,AGSLayerDelegate,AGSCalloutDelegate,AGSMapViewLayerDelegate,AGSFeatureLayerQueryDelegate,AGSMapViewTouchDelegate,UIGestureRecognizerDelegate,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,CourseStateViewControllerDelegate>
 {
     EachHoleMoreInfo *holeDetailView;
     
+//    HoleFunctionChangeView *holeFunctionView;
 }
 
 @property (weak, nonatomic) IBOutlet AGSMapView *CoursemapView;
@@ -64,6 +66,8 @@
 @property (strong, nonatomic) UIView                 *detailInfoView;
 //
 @property (strong, nonatomic) UIBarButtonItem        *rightItem;
+//
+//@property (strong, nonatomic) NSMutableArray         *
 
 
 
@@ -93,8 +97,13 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.navigationItem.rightBarButtonItem = nil;
+    //
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCourseHoleStateResponse:) name:@"dimissTheHoleFunction" object:self];
+    
+    
     
 }
+
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -209,9 +218,6 @@
     
     self.mySketchLayer.geometry = [[AGSMutablePolyline alloc] initWithSpatialReference:self.CoursemapView.spatialReference];
     
-    
-    
-    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
@@ -243,39 +249,39 @@
     self.query = [AGSQuery query];
     self.query.whereClause = querySQL;
     
-    [_localHoleFeatureTable queryResultsWithParameters:_query completion:^(NSArray *results, NSError *error) {
-        if (results.count) {
-            AGSGDBFeature *curFeatrue = results[0];
-            NSDictionary *curDic = [curFeatrue allAttributes];
-            
-            AGSSimpleFillSymbol *fillSymbolView = [[AGSSimpleFillSymbol alloc] initWithColor:[[UIColor whiteColor] colorWithAlphaComponent:0.15] outlineColor:[UIColor blueColor]];
-            AGSGraphic *holeGraphic = [[AGSGraphic alloc] initWithGeometry:curDic[@"Shape"] symbol:fillSymbolView attributes:nil];
-            [weakSelf.graphicLayer addGraphic:holeGraphic];
-            //将选择的球洞放大到屏幕中央
-            [_CoursemapView zoomToGeometry:curDic[@"Shape"] withPadding:120 animated:YES];
-            //
-            [UIView animateWithDuration:0.2 delay:1 options:UIViewAnimationOptionCurveEaseIn animations:^{
+    if ([featureAttr[@"是球场"] integerValue] == 1) {
+        [_localHoleFeatureTable queryResultsWithParameters:_query completion:^(NSArray *results, NSError *error) {
+            if (results.count) {
+                AGSGDBFeature *curFeatrue = results[0];
+                NSDictionary *curDic = [curFeatrue allAttributes];
+                
                 AGSSimpleFillSymbol *fillSymbolView = [[AGSSimpleFillSymbol alloc] initWithColor:[[UIColor whiteColor] colorWithAlphaComponent:0.15] outlineColor:[UIColor blueColor]];
                 AGSGraphic *holeGraphic = [[AGSGraphic alloc] initWithGeometry:curDic[@"Shape"] symbol:fillSymbolView attributes:nil];
                 [weakSelf.graphicLayer addGraphic:holeGraphic];
                 //将选择的球洞放大到屏幕中央
                 [_CoursemapView zoomToGeometry:curDic[@"Shape"] withPadding:120 animated:YES];
-            } completion:^(BOOL finished) {
                 
+                //
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"dimissTheHoleFunction" object:self userInfo:nil];
+                    
+                });
                 
-                
-            }];
+            }
             
-            
-        }
-        
-    }];
+        }];
+    }
     
-    
-    NSLog(@"featureDic:%@",featureAttr);
+//    NSLog(@"featureDic:%@",featureAttr);
     
     return NO;
 }
+
+- (void)removeTheGraphics
+{
+    [_graphicLayer removeAllGraphics];
+}
+
 
 #pragma -mark mapViewDidLoad
 /**
@@ -315,107 +321,82 @@
 
 - (void)createCourseStateViews
 {
-    _backHalfAplphaView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-    _backHalfAplphaView.backgroundColor = [UIColor whiteColor];
-    _backHalfAplphaView.alpha = 0.25;
-    [self.view addSubview:_backHalfAplphaView];
-    
-    //选框背景
-    _selectCourseStateView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth - 40, 168)];
-    _selectCourseStateView.backgroundColor = [UIColor whiteColor];
-    _selectCourseStateView.frame = CGRectMake(0, 0, ScreenWidth - 40, 169);
-    _selectCourseStateView.center = CGPointMake(ScreenWidth/2, ScreenHeight - 184);
-    _selectCourseStateView.layer.cornerRadius = 5;
-    //添加第一行的图片
-    UITableViewCell *holeRun = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 5, 40, 54)];
-    [holeRun setFrame:CGRectMake(0, 5, _selectCourseStateView.frame.size.width, 54)];
-    
-    holeRun.selectionStyle = UITableViewCellSelectionStyleNone;
-    holeRun.imageView.image = [UIImage imageNamed:@"score.png"];
-    holeRun.textLabel.text = @"球洞运行";
-    holeRun.backgroundColor = [UIColor whiteColor];
-//    holeRun.accessoryType = UITableViewCellAccessoryDetailButton;
-    
-    UISwitch *holeRunSwitch = [[UISwitch alloc] init];
-    
-    holeRun.accessoryView = holeRunSwitch;
+//    _backHalfAplphaView = [[UIView alloc] initWithFrame:self.view.bounds];
+//    _backHalfAplphaView.backgroundColor = [UIColor blackColor];
+//    _backHalfAplphaView.alpha = 0.3;
+//    [self.view addSubview:_backHalfAplphaView];
+//    
+//    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissCourseStateViews)];
+//    tapGes.numberOfTapsRequired = 1;
+//    tapGes.delegate = self;
+//    [_backHalfAplphaView addGestureRecognizer:tapGes];
     
     
-//    holeRun.
+    HoleFunctionChangeView *holeFunctionView;
     
-    [_selectCourseStateView addSubview:holeRun];
-    //添加分割线1
-    UIView *firstSeparetorView = [[UIView alloc] initWithFrame:CGRectMake(0, 60, _selectCourseStateView.frame.size.width, 1.0f)];
-    firstSeparetorView.backgroundColor = [UIColor lightGrayColor];
-    [_selectCourseStateView addSubview:firstSeparetorView];
-    //添加第二行的图片
-    UITableViewCell *holeStart = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 40, 54)];
-    [holeStart setFrame:CGRectMake(0, 62, _selectCourseStateView.frame.size.width, 54)];
+    holeFunctionView = [[HoleFunctionChangeView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 20, 157)];
+    holeFunctionView.delegate = self;
+    holeFunctionView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:holeFunctionView];
     
-    holeStart.selectionStyle = UITableViewCellSelectionStyleNone;
-    holeStart.imageView.image = [UIImage imageNamed:@"score.png"];
-    holeStart.textLabel.text = @"始发球洞";
-    holeStart.backgroundColor = [UIColor whiteColor];
-    UISwitch *holeStartSwitch = [[UISwitch alloc] init];
-    
-    holeStart.accessoryView = holeStartSwitch;
-    
-    [_selectCourseStateView addSubview:holeStart];
-    //添加分割线2
-    UIView *secondSeparetorView = [[UIView alloc] initWithFrame:CGRectMake(0, 117, _selectCourseStateView.frame.size.width, 1.0f)];
-    secondSeparetorView.backgroundColor = [UIColor lightGrayColor];
-    [_selectCourseStateView addSubview:secondSeparetorView];
-    
-    [self.view addSubview:_selectCourseStateView];
-    //添加确定按键
-    UIButton *confirmChangeStateButton = [[UIButton alloc] init];
-    [confirmChangeStateButton setFrame:CGRectMake(0, 0, _selectCourseStateView.frame.size.width - 120, 36)];
-    confirmChangeStateButton.center = CGPointMake(_selectCourseStateView.frame.size.width/2, 143);
-    
-    [confirmChangeStateButton setTitle:@"确定" forState:UIControlStateNormal];
-    
-    confirmChangeStateButton.titleLabel.font = [UIFont systemFontOfSize:17];
-//    confirmChangeStateButton.titleLabel.textColor = [UIColor blackColor];
-    confirmChangeStateButton.backgroundColor = [UIColor greenColor];//[UIColor colorWithRed:44 green:184 blue:106 alpha:1.0];
-    confirmChangeStateButton.layer.cornerRadius = 12;
-    confirmChangeStateButton.userInteractionEnabled = YES;
-    [confirmChangeStateButton addTarget:self action:@selector(changeCourseHoleStateResponse) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    [_selectCourseStateView addSubview:confirmChangeStateButton];
-    
-    //为主背景图视图添加点击手势
-    UITapGestureRecognizer *tapDismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissCourseStateViews)];
-    tapDismiss.delegate = self;
-    tapDismiss.numberOfTapsRequired = 1;
-    
-    [_backHalfAplphaView addGestureRecognizer:tapDismiss];
+    [holeFunctionView holeFunctionViewShow];
     
 }
 
-- (void)changeCourseHoleStateResponse
+- (void)changeCourseHoleStateResponse:(NSNotification *)notification
 {
-    NSLog(@"...we have set confirm...");
-    [self dismissCourseStateViews];
+    if ([notification.name isEqualToString:@"dimissTheHoleFunction"]) {
+        NSLog(@"...we have set confirm...");
+        
+        [self createCourseStateViews];
+    }
+    
+    
+    
 }
 
 - (void)dismissCourseStateViews
 {
-    __weak typeof(self) weakSelf = self;
     
-    [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        [weakSelf.backHalfAplphaView removeFromSuperview];
-        [weakSelf.selectCourseStateView removeFromSuperview];
-        
-        
-        
-    } completion:^(BOOL finished) {
-        //
-        weakSelf.backHalfAplphaView = nil;
-        weakSelf.selectCourseStateView = nil;
-        
-        [weakSelf.backHalfAplphaView setValue:@"hide" forKey:@"courseState"];
-    }];
+    NSLog(@"...we have set confirm...");
+    
+    [_backHalfAplphaView removeFromSuperview];
+    
+    for (UIView *theSubView in self.view.subviews) {
+        if ([theSubView isKindOfClass:[HoleFunctionChangeView class]]) {
+            [theSubView removeFromSuperview];
+            
+            HoleFunctionChangeView *holeView = (HoleFunctionChangeView *)theSubView;
+            
+            [holeView holeFunctionViewDismiss];
+            
+            
+        }
+    }
+    
+//    [holeFunctionView removeFromSuperview];
+    
+    _backHalfAplphaView.hidden = YES;
+    _backHalfAplphaView = nil;
+//    __weak typeof(self) weakSelf = self;
+//    
+//    [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+//        [weakSelf.backHalfAplphaView removeFromSuperview];
+//        [weakSelf.selectCourseStateView removeFromSuperview];
+//        
+//        
+//        
+//    } completion:^(BOOL finished) {
+//        //
+//        weakSelf.backHalfAplphaView = nil;
+//        weakSelf.selectCourseStateView = nil;
+//        
+//        [weakSelf.backHalfAplphaView setValue:@"hide" forKey:@"courseState"];
+//    }];
+    
+//    [self.backHalfAplphaView removeFromSuperview];
+//    [self.selectCourseStateView removeFromSuperview];
+    
     
     
 }
@@ -423,7 +404,7 @@
 
 - (IBAction)SubFunctionSelectFuntion:(UIButton *)sender {
     
-    [self createCourseStateViews];
+//    [self createCourseStateViews];
     
 }
 
@@ -687,6 +668,12 @@
         }
         else
         {
+            UITableViewCell *oldselectedCell = [tableView cellForRowAtIndexPath:oldIndexPath];
+            oldselectedCell.accessoryView = nil;
+            UIButton *oldaccessoryButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+            [oldaccessoryButton setImage:[UIImage imageNamed:@"more_mapData.png"] forState:UIControlStateNormal];
+            oldselectedCell.accessoryView = oldaccessoryButton;
+            //
             oldIndexPath = indexPath;
             [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                 [weakSelf dismissTheEachHoleInfoView];
@@ -735,6 +722,13 @@
         [self.courseDataDisTable setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)];
     }
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    _courseDataDisTable.contentSize = CGSizeMake(_courseDataDisTable.frame.size.width, 1560);
+}
+
+
 
 - (void)createAndDisEachHoleInfo:(CGRect)theFrame
 {
@@ -791,7 +785,7 @@
     [theview setFrame:CGRectMake(theframe.origin.x, theframe.origin.y, theframe.size.width, 8)];
     _courseDataDisTable.tableHeaderView = theview;
     
-//    _courseDataDisTable.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);//上移64
+//    _courseDataDisTable.contentSize = CGSizeMake(self.view.frame.size.width, 1596);
 }
 
 - (IBAction)ChangeDataDisType:(UISegmentedControl *)sender {

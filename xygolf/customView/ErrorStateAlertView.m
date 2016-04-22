@@ -119,7 +119,11 @@ typedef void(^CustomCompletionAnimationBlock)(BOOL finised);
             weakSelf.transform = CGAffineTransformIdentity;
         }];
     };
-    CustomAnimationBlock shrinkBlock = ^{weakSelf.transform = CGAffineTransformMakeScale(FLT_EPSILON, FLT_EPSILON);};
+    CustomAnimationBlock shrinkBlock = ^{
+        //weakSelf.transform = CGAffineTransformMakeScale(FLT_EPSILON, FLT_EPSILON);
+        
+        weakSelf.alpha = 0.0;
+    };
     CustomCompletionAnimationBlock completionBlock = ^(BOOL done){
         [UIView animateWithDuration:5.0f animations:shrinkBlock];
         

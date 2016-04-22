@@ -10,6 +10,12 @@
 #import <ArcGIS/ArcGIS.h>
 
 
+@protocol CourseStateViewControllerDelegate <NSObject>
+
+- (void)removeTheGraphics;
+
+@end
+
 
 @interface CourseStateViewController : UIViewController
 

@@ -38,7 +38,9 @@
 		5B3FA1E01CA2249100D8FE54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B3FA1DF1CA2249100D8FE54 /* Assets.xcassets */; };
 		5B3FA1E31CA2249100D8FE54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B3FA1E11CA2249100D8FE54 /* LaunchScreen.storyboard */; };
 		5B3FA1EE1CA2249200D8FE54 /* xygolfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FA1ED1CA2249200D8FE54 /* xygolfTests.m */; };
+		5B40D8491CC9BC7D0033CD01 /* offlineMapData.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B40D8481CC9BC7D0033CD01 /* offlineMapData.bundle */; };
 		5B48BF351CA4DF0B009EFCD3 /* TNPanNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B48BF341CA4DF0B009EFCD3 /* TNPanNavigationController.m */; };
+		5B549BE21CC8EE0A006AB700 /* HoleFunctionChangeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B549BE11CC8EE0A006AB700 /* HoleFunctionChangeView.m */; };
 		5B883A961CC1FC1C009353A3 /* customAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B883A951CC1FC1C009353A3 /* customAlertView.m */; };
 		5B8896321CA9141D00FB7EE4 /* RegisterOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8896311CA9141D00FB7EE4 /* RegisterOneViewController.m */; };
 		5B8896381CA9146600FB7EE4 /* RegisterTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8896371CA9146600FB7EE4 /* RegisterTwoViewController.m */; };
@@ -65,7 +67,6 @@
 		5BD210F31CAA2A3B001A8F97 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD210F21CAA2A3B001A8F97 /* libstdc++.tbd */; };
 		5BD210F51CAA2A44001A8F97 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD210F41CAA2A44001A8F97 /* libz.tbd */; };
 		5BDFA1691CC4690900725514 /* EachHoleMoreInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDFA1681CC4690900725514 /* EachHoleMoreInfo.m */; };
-		5BDFA16B1CC4D6B900725514 /* offlineMapData.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5BDFA16A1CC4D6B900725514 /* offlineMapData.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,8 +145,11 @@
 		5B3FA1E91CA2249200D8FE54 /* xygolfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xygolfTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3FA1ED1CA2249200D8FE54 /* xygolfTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = xygolfTests.m; sourceTree = "<group>"; };
 		5B3FA1EF1CA2249200D8FE54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B40D8481CC9BC7D0033CD01 /* offlineMapData.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = offlineMapData.bundle; sourceTree = "<group>"; };
 		5B48BF331CA4DF0B009EFCD3 /* TNPanNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TNPanNavigationController.h; path = xygolf/TNPanNavigationController.h; sourceTree = "<group>"; };
 		5B48BF341CA4DF0B009EFCD3 /* TNPanNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TNPanNavigationController.m; path = xygolf/TNPanNavigationController.m; sourceTree = "<group>"; };
+		5B549BE01CC8EE0A006AB700 /* HoleFunctionChangeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HoleFunctionChangeView.h; path = customView/HoleFunctionChangeView.h; sourceTree = "<group>"; };
+		5B549BE11CC8EE0A006AB700 /* HoleFunctionChangeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HoleFunctionChangeView.m; path = customView/HoleFunctionChangeView.m; sourceTree = "<group>"; };
 		5B883A941CC1FC1C009353A3 /* customAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = customAlertView.h; path = xygolf/customView/customAlertView.h; sourceTree = "<group>"; };
 		5B883A951CC1FC1C009353A3 /* customAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = customAlertView.m; path = xygolf/customView/customAlertView.m; sourceTree = "<group>"; };
 		5B8896301CA9141D00FB7EE4 /* RegisterOneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterOneViewController.h; path = viewController/RegisterOneViewController.h; sourceTree = "<group>"; };
@@ -184,7 +188,6 @@
 		5BD210F41CAA2A44001A8F97 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		5BDFA1671CC4690900725514 /* EachHoleMoreInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EachHoleMoreInfo.h; path = customView/EachHoleMoreInfo.h; sourceTree = "<group>"; };
 		5BDFA1681CC4690900725514 /* EachHoleMoreInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EachHoleMoreInfo.m; path = customView/EachHoleMoreInfo.m; sourceTree = "<group>"; };
-		5BDFA16A1CC4D6B900725514 /* offlineMapData.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = offlineMapData.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +278,7 @@
 		5B0CFF191CABCF1D008D923A /* courseState */ = {
 			isa = PBXGroup;
 			children = (
+				5B549BDF1CC8EDDF006AB700 /* holeFunctionChange */,
 				5BA2F54F1CBF67EF00300A26 /* eachHoleMoreInfo */,
 				5B0CFF1A1CABCF48008D923A /* CourseStateViewController.h */,
 				5B0CFF1B1CABCF48008D923A /* CourseStateViewController.m */,
@@ -437,6 +441,15 @@
 			name = registerVC;
 			sourceTree = "<group>";
 		};
+		5B549BDF1CC8EDDF006AB700 /* holeFunctionChange */ = {
+			isa = PBXGroup;
+			children = (
+				5B549BE01CC8EE0A006AB700 /* HoleFunctionChangeView.h */,
+				5B549BE11CC8EE0A006AB700 /* HoleFunctionChangeView.m */,
+			);
+			name = holeFunctionChange;
+			sourceTree = "<group>";
+		};
 		5B883A931CC1F322009353A3 /* customAlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -538,7 +551,7 @@
 		5B98F3F51CBF3CF500B95E93 /* offlineMapSource */ = {
 			isa = PBXGroup;
 			children = (
-				5BDFA16A1CC4D6B900725514 /* offlineMapData.bundle */,
+				5B40D8481CC9BC7D0033CD01 /* offlineMapData.bundle */,
 			);
 			name = offlineMapSource;
 			sourceTree = "<group>";
@@ -689,8 +702,8 @@
 			files = (
 				5B942ACA1CAD172C00F684E8 /* areaID.plist in Resources */,
 				5B942ACB1CAD172C00F684E8 /* Weather_phenomenonID.plist in Resources */,
-				5BDFA16B1CC4D6B900725514 /* offlineMapData.bundle in Resources */,
 				5B3FA1E31CA2249100D8FE54 /* LaunchScreen.storyboard in Resources */,
+				5B40D8491CC9BC7D0033CD01 /* offlineMapData.bundle in Resources */,
 				5B942ACC1CAD172C00F684E8 /* weather_windDirectionID.plist in Resources */,
 				5B3FA1E01CA2249100D8FE54 /* Assets.xcassets in Resources */,
 				5B98F42F1CBF45F300B95E93 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -741,6 +754,7 @@
 				5B3FA1D51CA2249100D8FE54 /* main.m in Sources */,
 				5B8896381CA9146600FB7EE4 /* RegisterTwoViewController.m in Sources */,
 				5B10AA8A1CBCE2C6000FFAF3 /* AFURLSessionManager.m in Sources */,
+				5B549BE21CC8EE0A006AB700 /* HoleFunctionChangeView.m in Sources */,
 				5B10AA901CBCE2C6000FFAF3 /* UIImageView+AFNetworking.m in Sources */,
 				5B0CFF1C1CABCF48008D923A /* CourseStateViewController.m in Sources */,
 				5B48BF351CA4DF0B009EFCD3 /* TNPanNavigationController.m in Sources */,
