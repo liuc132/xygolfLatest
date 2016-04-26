@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="61" id="KGk-i7-Jjw" customClass="CustomTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03洞" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Cy-ZH-7kJ">
+                        <rect key="frame" x="15" y="8" width="55" height="47"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="55" id="aXE-jo-IcT"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3组球队" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6K-w8-wIp">
+                        <rect key="frame" x="181" y="21" width="78" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7mN-Fk-NZI">
+                        <rect key="frame" x="267" y="20" width="38" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="38" id="4nZ-uN-bNI"/>
+                        </constraints>
+                        <state key="normal" image="more_mapData"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="非常拥堵" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqa-KJ-DPr">
+                        <rect key="frame" x="86" y="21" width="75" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="75" id="ZAF-xg-U8D"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="m6K-w8-wIp" firstAttribute="centerY" secondItem="7mN-Fk-NZI" secondAttribute="centerY" id="F8G-OI-ae5"/>
+                    <constraint firstItem="5Cy-ZH-7kJ" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="FW8-1B-MIQ"/>
+                    <constraint firstItem="5Cy-ZH-7kJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="H4Y-rI-jyH"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="7mN-Fk-NZI" secondAttribute="trailing" constant="7" id="Hrf-BD-LOc"/>
+                    <constraint firstItem="7mN-Fk-NZI" firstAttribute="leading" secondItem="m6K-w8-wIp" secondAttribute="trailing" constant="8" symbolic="YES" id="KSo-Yx-PI2"/>
+                    <constraint firstItem="5Cy-ZH-7kJ" firstAttribute="centerY" secondItem="Eqa-KJ-DPr" secondAttribute="centerY" id="MVx-Py-aEe"/>
+                    <constraint firstItem="Eqa-KJ-DPr" firstAttribute="leading" secondItem="5Cy-ZH-7kJ" secondAttribute="trailing" constant="16" id="OFo-b9-hd1"/>
+                    <constraint firstItem="Eqa-KJ-DPr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="13" id="RU0-ZM-Hi1"/>
+                    <constraint firstItem="5Cy-ZH-7kJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="X3M-pt-H6i"/>
+                    <constraint firstItem="Eqa-KJ-DPr" firstAttribute="bottom" secondItem="m6K-w8-wIp" secondAttribute="bottom" id="YQ2-C1-TbB"/>
+                    <constraint firstItem="Eqa-KJ-DPr" firstAttribute="top" secondItem="m6K-w8-wIp" secondAttribute="top" id="yAk-KL-Tm3"/>
+                    <constraint firstItem="m6K-w8-wIp" firstAttribute="leading" secondItem="Eqa-KJ-DPr" secondAttribute="trailing" constant="20" id="yo8-3M-LxV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="holeCount" destination="m6K-w8-wIp" id="AY1-gb-wxe"/>
+                <outlet property="holeMoreInfoButton" destination="7mN-Fk-NZI" id="FnM-2E-Gpi"/>
+                <outlet property="holeName" destination="5Cy-ZH-7kJ" id="Ars-tp-p3A"/>
+                <outlet property="holeState" destination="Eqa-KJ-DPr" id="QbD-yH-0qI"/>
+            </connections>
+            <point key="canvasLocation" x="509" y="300"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="more_mapData" width="24" height="24"/>
+    </resources>
+</document>

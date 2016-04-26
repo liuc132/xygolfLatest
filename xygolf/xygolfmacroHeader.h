@@ -17,9 +17,11 @@
 /**
  *  访问接口定义
  */
-#define xyMainURL           @"http://192.168.1.115:8089/user/"
-#define xyLogInSubURL       @"clogin"       //登录
-#define xyRegSubURL         @"manager"      //注册role type:manager(调度/巡场)   caddy(球童)
+#define xyMainURL           @"http://localhost:8089/"
+#define xyLogInSubURL       @"user/mlogin"       //登录
+#define xyRegSubURL         @"user/manager"      //注册role type:manager(调度/巡场)   caddy(球童)
+#define xycaptcha           @"user/captcha"      //发送验证码
+
 
 
 

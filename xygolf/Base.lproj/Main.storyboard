@@ -1444,7 +1444,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2UA-rY-A6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <barButtonItem image="79AB1C17-E445-493C-BEEE-E41A5E5B4813" id="1vs-Tt-VdA"/>
+                <barButtonItem image="B05A5DA8-BEF3-4D9D-8C13-A3E8A3137F4A" id="1vs-Tt-VdA"/>
             </objects>
             <point key="canvasLocation" x="2412" y="-101"/>
         </scene>
@@ -1560,7 +1560,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="79AB1C17-E445-493C-BEEE-E41A5E5B4813" width="24" height="24">
+        <image name="B05A5DA8-BEF3-4D9D-8C13-A3E8A3137F4A" width="24" height="24">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

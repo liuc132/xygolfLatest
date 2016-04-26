@@ -205,7 +205,7 @@ typedef void (^CustomCompletionAnimationBlock)(BOOL finished);
         [_moreHanleView addSubview:eachView];
     }
     
-    NSLog(@"subviewCount:%ld",_moreHanleView.subviews.count);
+    NSLog(@"subviewCount:%ld",(unsigned long)_moreHanleView.subviews.count);
     //
     [contentView addSubview:_moreHanleView];
 }

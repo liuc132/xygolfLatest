@@ -31,6 +31,8 @@
 		5B10AA931CBCE2C6000FFAF3 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B10AA841CBCE2C6000FFAF3 /* UIWebView+AFNetworking.m */; };
 		5B10AA981CBD1EB9000FFAF3 /* AndyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B10AA971CBD1EB9000FFAF3 /* AndyScrollView.m */; };
 		5B10AA9B1CBD1FC4000FFAF3 /* LeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B10AA9A1CBD1FC4000FFAF3 /* LeftView.m */; };
+		5B17FA2C1CCF50FE0012FA4A /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B17FA2A1CCF50FE0012FA4A /* CustomTableViewCell.m */; };
+		5B17FA2D1CCF50FE0012FA4A /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B17FA2B1CCF50FE0012FA4A /* CustomTableViewCell.xib */; };
 		5B3FA1D51CA2249100D8FE54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FA1D41CA2249100D8FE54 /* main.m */; };
 		5B3FA1D81CA2249100D8FE54 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FA1D71CA2249100D8FE54 /* AppDelegate.m */; };
 		5B3FA1DB1CA2249100D8FE54 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3FA1DA1CA2249100D8FE54 /* LogInViewController.m */; };
@@ -41,6 +43,7 @@
 		5B40D84F1CC9F5AD0033CD01 /* offlineMapData.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B40D84E1CC9F5AD0033CD01 /* offlineMapData.bundle */; };
 		5B48BF351CA4DF0B009EFCD3 /* TNPanNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B48BF341CA4DF0B009EFCD3 /* TNPanNavigationController.m */; };
 		5B549BE21CC8EE0A006AB700 /* HoleFunctionChangeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B549BE11CC8EE0A006AB700 /* HoleFunctionChangeView.m */; };
+		5B79B2ED1CCF021600BCAD32 /* CheckTheMobileNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B79B2EC1CCF021600BCAD32 /* CheckTheMobileNumber.m */; };
 		5B883A961CC1FC1C009353A3 /* customAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B883A951CC1FC1C009353A3 /* customAlertView.m */; };
 		5B8896321CA9141D00FB7EE4 /* RegisterOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8896311CA9141D00FB7EE4 /* RegisterOneViewController.m */; };
 		5B8896381CA9146600FB7EE4 /* RegisterTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8896371CA9146600FB7EE4 /* RegisterTwoViewController.m */; };
@@ -132,6 +135,9 @@
 		5B10AA971CBD1EB9000FFAF3 /* AndyScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AndyScrollView.m; sourceTree = "<group>"; };
 		5B10AA991CBD1FC4000FFAF3 /* LeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftView.h; sourceTree = "<group>"; };
 		5B10AA9A1CBD1FC4000FFAF3 /* LeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftView.m; sourceTree = "<group>"; };
+		5B17FA291CCF50FE0012FA4A /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTableViewCell.h; path = customTableCell/CustomTableViewCell.h; sourceTree = "<group>"; };
+		5B17FA2A1CCF50FE0012FA4A /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTableViewCell.m; path = customTableCell/CustomTableViewCell.m; sourceTree = "<group>"; };
+		5B17FA2B1CCF50FE0012FA4A /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomTableViewCell.xib; path = customTableCell/CustomTableViewCell.xib; sourceTree = "<group>"; };
 		5B3FA1D01CA2249100D8FE54 /* xygolf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xygolf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3FA1D41CA2249100D8FE54 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5B3FA1D61CA2249100D8FE54 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -150,6 +156,8 @@
 		5B48BF341CA4DF0B009EFCD3 /* TNPanNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TNPanNavigationController.m; path = xygolf/TNPanNavigationController.m; sourceTree = "<group>"; };
 		5B549BE01CC8EE0A006AB700 /* HoleFunctionChangeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HoleFunctionChangeView.h; path = customView/HoleFunctionChangeView.h; sourceTree = "<group>"; };
 		5B549BE11CC8EE0A006AB700 /* HoleFunctionChangeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HoleFunctionChangeView.m; path = customView/HoleFunctionChangeView.m; sourceTree = "<group>"; };
+		5B79B2EB1CCF021600BCAD32 /* CheckTheMobileNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckTheMobileNumber.h; sourceTree = "<group>"; };
+		5B79B2EC1CCF021600BCAD32 /* CheckTheMobileNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckTheMobileNumber.m; sourceTree = "<group>"; };
 		5B883A941CC1FC1C009353A3 /* customAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = customAlertView.h; path = xygolf/customView/customAlertView.h; sourceTree = "<group>"; };
 		5B883A951CC1FC1C009353A3 /* customAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = customAlertView.m; path = xygolf/customView/customAlertView.m; sourceTree = "<group>"; };
 		5B8896301CA9141D00FB7EE4 /* RegisterOneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterOneViewController.h; path = viewController/RegisterOneViewController.h; sourceTree = "<group>"; };
@@ -278,6 +286,7 @@
 		5B0CFF191CABCF1D008D923A /* courseState */ = {
 			isa = PBXGroup;
 			children = (
+				5B79B2EE1CCF423A00BCAD32 /* CustomTableCell */,
 				5B549BDF1CC8EDDF006AB700 /* holeFunctionChange */,
 				5BA2F54F1CBF67EF00300A26 /* eachHoleMoreInfo */,
 				5B0CFF1A1CABCF48008D923A /* CourseStateViewController.h */,
@@ -377,6 +386,7 @@
 		5B3FA1D21CA2249100D8FE54 /* xygolf */ = {
 			isa = PBXGroup;
 			children = (
+				5B79B2EA1CCF01EA00BCAD32 /* checkTheMobile */,
 				5B942ABB1CAD161100F684E8 /* weatherInfo */,
 				5B942AB71CAD12E100F684E8 /* getGpsInfo */,
 				5B0CFF041CAB678C008D923A /* mainInterface */,
@@ -448,6 +458,25 @@
 				5B549BE11CC8EE0A006AB700 /* HoleFunctionChangeView.m */,
 			);
 			name = holeFunctionChange;
+			sourceTree = "<group>";
+		};
+		5B79B2EA1CCF01EA00BCAD32 /* checkTheMobile */ = {
+			isa = PBXGroup;
+			children = (
+				5B79B2EB1CCF021600BCAD32 /* CheckTheMobileNumber.h */,
+				5B79B2EC1CCF021600BCAD32 /* CheckTheMobileNumber.m */,
+			);
+			name = checkTheMobile;
+			sourceTree = "<group>";
+		};
+		5B79B2EE1CCF423A00BCAD32 /* CustomTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				5B17FA291CCF50FE0012FA4A /* CustomTableViewCell.h */,
+				5B17FA2A1CCF50FE0012FA4A /* CustomTableViewCell.m */,
+				5B17FA2B1CCF50FE0012FA4A /* CustomTableViewCell.xib */,
+			);
+			name = CustomTableCell;
 			sourceTree = "<group>";
 		};
 		5B883A931CC1F322009353A3 /* customAlertView */ = {
@@ -710,6 +739,7 @@
 				5B98F3F31CBF3A6B00B95E93 /* ArcGIS.bundle in Resources */,
 				5B3FA1DE1CA2249100D8FE54 /* Main.storyboard in Resources */,
 				5BAF70471CC5F20100F1FA3D /* InfoPlist.strings in Resources */,
+				5B17FA2D1CCF50FE0012FA4A /* CustomTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,6 +767,7 @@
 				5B883A961CC1FC1C009353A3 /* customAlertView.m in Sources */,
 				5B8896321CA9141D00FB7EE4 /* RegisterOneViewController.m in Sources */,
 				5B942AC51CAD167600F684E8 /* WeatherParse.m in Sources */,
+				5B17FA2C1CCF50FE0012FA4A /* CustomTableViewCell.m in Sources */,
 				5B98F3F01CBF2A7A00B95E93 /* CustomSegmentedControl.m in Sources */,
 				5B3FA1DB1CA2249100D8FE54 /* LogInViewController.m in Sources */,
 				5B0CFF071CAB6832008D923A /* CustomMainViewController.m in Sources */,
@@ -744,6 +775,7 @@
 				5BAF704E1CC61D6800F1FA3D /* ErrorStateAlertView.m in Sources */,
 				5B10AA881CBCE2C6000FFAF3 /* AFURLRequestSerialization.m in Sources */,
 				5B942ABA1CAD139800F684E8 /* GetGPSLocationData.m in Sources */,
+				5B79B2ED1CCF021600BCAD32 /* CheckTheMobileNumber.m in Sources */,
 				5B10AA911CBCE2C6000FFAF3 /* UIProgressView+AFNetworking.m in Sources */,
 				5B10AA871CBCE2C6000FFAF3 /* AFSecurityPolicy.m in Sources */,
 				5B0CFF101CAB8694008D923A /* ScoreCenterViewController.m in Sources */,

@@ -11,6 +11,7 @@
 #import "AFHTTPSessionManager.h"
 #import "AFNetworkReachabilityManager.h"
 #import "xygolfmacroHeader.h"
+#import "CheckTheMobileNumber.h"
 
 @interface LogInViewController ()<UIGestureRecognizerDelegate>
 
@@ -259,10 +260,24 @@
     NSString *account = self.accountInputText.text;
     NSString *passwd = self.passwordInputText.text;
     
+    if ((![account integerValue]) || (![passwd integerValue])) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请输入用户名/密码" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+        return;
+    }
+    
+    if (![CheckTheMobileNumber validateMobile:account] ||  (account.length <= 10)) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"输入号码有误" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+        
+        return;
+    }
     
     NSDictionary *logInParam = @{@"username":account,@"passwd":passwd};
+    
+    NSString *logInURL = [NSString stringWithFormat:@"%@%@",xyMainURL,xyLogInSubURL];
     //
-    [_afnetworkingManager GET:@"http://192.168.1.139:8080/user/clogin" parameters:logInParam progress:^(NSProgress * _Nonnull downloadProgress) {
+    [_afnetworkingManager GET:logInURL parameters:logInParam progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"responseObj:%@",responseObject);
@@ -272,12 +287,7 @@
         NSLog(@"error:%@",error.localizedDescription);
         NSLog(@"des=============:%@",error.description);
         NSLog(@"localizedDescription=============:%@",error.localizedDescription);
-        
-        NSString *afa;
-        NSData *data = [afa dataUsingEncoding:NSUTF8StringEncoding];
-        
-        [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-        
+                
     }];
     */
     

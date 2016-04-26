@@ -11,6 +11,8 @@
 #import "AFNetworkReachabilityManager.h"
 #import "customAlertView.h"
 #import "ErrorStateAlertView.h"
+#import "CheckTheMobileNumber.h"
+#import "xygolfmacroHeader.h"
 
 @interface RegisterOneViewController ()<UIGestureRecognizerDelegate>
 {
@@ -218,7 +220,7 @@
                 
 //                _getCheckMsgOrWait.titleLabel.textColor = [UIColor blueColor];
                 
-                [_getCheckMsgOrWait setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+//                [_getCheckMsgOrWait setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
                 
                 [_getCheckMsgOrWait setTitle:@"重新发送" forState:UIControlStateNormal];
                 _getCheckMsgOrWait.userInteractionEnabled = YES;
@@ -233,7 +235,9 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
-//                NSLog(@"____%@",strTime);
+                _getCheckMsgOrWait.titleLabel.textAlignment = NSTextAlignmentCenter;
+                _getCheckMsgOrWait.titleLabel.adjustsFontSizeToFitWidth = YES;
+                
                 [_getCheckMsgOrWait setTitle:[NSString stringWithFormat:@"%@秒后重发",strTime] forState:UIControlStateNormal];
                 _getCheckMsgOrWait.userInteractionEnabled = NO;
                 
@@ -243,93 +247,6 @@
         }
     });
     dispatch_resume(_timer);
-    
-}
-
-- (BOOL)validateMobile:(NSString *)mobileNum
-
-{
-    
-    /**
-     
-     * 手机号码
-     
-     * 移动：134[0-8],135,136,137,138,139,150,151,157,158,159,182,187,188
-     
-     * 联通：130,131,132,152,155,156,185,186
-     
-     * 电信：133,1349,153,180,189
-     
-     */
-    
-    NSString * MOBILE = @"^1(3[0-9]|5[0-35-9]|8[025-9])\\d{8}$";
-    
-    /**
-     
-     10         * 中国移动：China Mobile
-     
-     11         * 134[0-8],135,136,137,138,139,150,151,152,157,158,159,182,187,188  147,183
-     
-     12         */
-    
-    NSString * CM = @"^1(34[0-8]|(3[5-9]|47|5[0-27-9]|8[2378])\\d)\\d{7}$";
-    
-    /**
-     
-     15         * 中国联通：China Unicom
-     
-     16         * 130,131,132,155,156,185,186
-     
-     17         */
-    
-    NSString * CU = @"^1(3[0-2]|5[56]|76|8[56])\\d{8}$";
-    
-    /**
-     
-     20         * 中国电信：China Telecom
-     
-     21         * 133,1349,153,180,189
-     
-     22         */
-    
-    NSString * CT = @"^1((33|53|77|8[019])[0-9]|349)\\d{7}$";
-    
-    /**
-     
-     25         * 大陆地区固话及小灵通
-     
-     26         * 区号：010,020,021,022,023,024,025,027,028,029
-     
-     27         * 号码：七位或八位
-     
-     28         */
-    
-    // NSString * PHS = @"^0(10|2[0-5789]|\\d{3})\\d{7,8}$";
-    NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",MOBILE];
-    
-    NSPredicate *regextestcm = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",CM];
-    
-    NSPredicate *regextestcu = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",CU];
-    
-    NSPredicate *regextestct = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",CT];
-    
-    if(([regextestmobile evaluateWithObject:mobileNum] == YES)
-       
-       || ([regextestcm evaluateWithObject:mobileNum] == YES)
-       
-       || ([regextestct evaluateWithObject:mobileNum] == YES)
-       
-       || ([regextestcu evaluateWithObject:mobileNum] == YES))
-        
-    {
-        return YES;
-    }
-    
-    else
-        
-    {
-        return NO;
-    }
     
 }
 
@@ -346,7 +263,7 @@
 - (IBAction)getCheckMsgCode:(UIButton *)sender {
     NSString *theMobileNum = _mobileTextField.text;
     
-    if (![self validateMobile:theMobileNum] ||  (theMobileNum.length <= 10)) {
+    if (![CheckTheMobileNumber validateMobile:theMobileNum] ||  (theMobileNum.length <= 10)) {
         [self errAlertViewSetting:@"输入号码有误"];
         return;
     }
@@ -359,24 +276,23 @@
     
     
     
-    [_getCheckMsgOrWait setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+//    [_getCheckMsgOrWait setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     self.msgCodeTextField.placeholder = @"正在发送验证码...";
     //
-    UIColor *waitMsgtheColor = [UIColor lightGrayColor];
-    
-    [_getCheckMsgOrWait setTitleColor:waitMsgtheColor forState:UIControlStateNormal];
+//    UIColor *waitMsgtheColor = [UIColor lightGrayColor];
+//    
+//    [_getCheckMsgOrWait setTitleColor:waitMsgtheColor forState:UIControlStateNormal];
     [self startTime];
     //3AA7E0
     NSString *registerMobileNum = self.mobileTextField.text;
     
     NSDictionary *getCheckCodeParam = @{@"mobile":@"15730216180",@"smstype":@"0"};
     
-    
-    
+    NSString *getCheckCodeStr = [NSString stringWithFormat:@"%@%@",xyMainURL,xycaptcha];
     
     if ([registerMobileNum length] == 11) {
         //
-        [_afhttpManager GET:@"http://192.168.1.128:8089/user/captcha" parameters:getCheckCodeParam progress:^(NSProgress * _Nonnull downloadProgress) {
+        [_afhttpManager GET:getCheckCodeStr parameters:getCheckCodeParam progress:^(NSProgress * _Nonnull downloadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSLog(@"responseObject:%@",responseObject);
@@ -403,22 +319,9 @@
     
     
 }
-//
-//- (IBAction)showTheCode:(UIButton *)sender {
-//    BOOL NoshowCodeEnable = !self.passwordTextField.secureTextEntry;
-//    self.passwordTextField.secureTextEntry = NoshowCodeEnable;
-//    self.confirmPasswordTextField.secureTextEntry = NoshowCodeEnable;
-//    //
-//    if (NoshowCodeEnable) {
-//        [_showTheCodeButton setTitle:@"显示密码" forState:UIControlStateNormal];
-//    }
-//    else
-//    {
-//        [_showTheCodeButton setTitle:@"隐藏密码" forState:UIControlStateNormal];
-//    }
-//}
 
-- (IBAction)registerNewUser:(UIButton *)sender {
+- (void)registerSuccessfulAlert
+{
     //
     defaultBackView = [[UIView alloc] initWithFrame:self.view.bounds];
     [defaultBackView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.6]];
@@ -440,11 +343,13 @@
     [cusAlert.secondbutton.titleLabel setTextColor:[UIColor colorWithRed:10/255.0 green:126/255.0 blue:81/255.0 alpha:1.0]];
     
     [cusAlert show];
+}
+
+- (IBAction)registerNewUser:(UIButton *)sender {
     
     
+    [self registerSuccessfulAlert];
     
-    
-    /*
     NSString *Thecode = self.msgCodeTextField.text;
     //
     NSDictionary *registerParam = @{@"username":@"15730216180",@"passwd":@"123456",@"code":Thecode};
@@ -464,7 +369,7 @@
         
         
     }];
-     */
+     
 }
 
 - (void)enterMainMap

@@ -10,14 +10,20 @@
 #import "EachHoleMoreInfo.h"
 #import "xygolfmacroHeader.h"
 #import "HoleFunctionChangeView.h"
+#import "CustomTableViewCell.h"
 
 #define CLIENT_ID   @"gKbc4lH2K27McsAe"
 
 @interface CourseStateViewController ()<AGSQueryTaskDelegate,AGSLayerDelegate,AGSCalloutDelegate,AGSMapViewLayerDelegate,AGSFeatureLayerQueryDelegate,AGSMapViewTouchDelegate,UIGestureRecognizerDelegate,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,CourseStateViewControllerDelegate>
 {
     EachHoleMoreInfo *holeDetailView;
+    //
+    NSMutableArray *holeNameArray;
+    NSMutableArray *holeStateArray;
+    NSMutableArray *holeCountArray;
+    NSMutableArray *holeStateNumArray;
+    NSMutableArray *groupPositionMarkArray;
     
-//    HoleFunctionChangeView *holeFunctionView;
 }
 
 @property (weak, nonatomic) IBOutlet AGSMapView *CoursemapView;
@@ -100,8 +106,23 @@
     self.navigationItem.rightBarButtonItem = nil;
     //
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCourseHoleStateResponse:) name:@"showTheHoleFunction" object:self];
+    //
+    [self creatNavBarItem];
+    //构建数据（模拟一下）
+    [self settingTheData];
     
-    
+}
+
+- (void)settingTheData
+{
+    holeNameArray = [[NSMutableArray alloc] initWithObjects:@"01洞" ,@"02洞" ,@"03洞" ,@"04洞" ,@"05洞" ,@"06洞" , @"07洞" ,@"08洞" ,@"09洞" ,@"10洞" ,@"11洞" ,@"12洞" ,@"13洞" ,@"14洞" ,@"15洞" ,@"16洞" ,@"17洞" ,@"18洞" , nil];
+    holeStateArray = [[NSMutableArray alloc] initWithObjects:@"缓堵",@"正常",@"非常拥堵",@"无人",@"缓堵",@"正常",@"非常拥堵",@"无人",@"缓堵",@"正常",@"非常拥堵",@"无人",@"缓堵",@"正常",@"非常拥堵",@"无人",@"缓堵",@"正常", nil];
+    holeCountArray = [[NSMutableArray alloc] initWithObjects:@"3组球队",@"2组球队",@"3组球队",@"0组球队",@"3组球队",@"2组球队",@"3组球队",@"0组球队",@"3组球队",@"2组球队",@"3组球队",@"0组球队",@"3组球队",@"2组球队",@"3组球队",@"0组球队",@"3组球队",@"2组球队", nil];
+    /*
+     *0:无人 ;1:正常 ;2:缓堵 ;3:非常拥堵
+     *
+     */
+    holeStateNumArray = [[NSMutableArray alloc] initWithObjects:@"2",@"1",@"3",@"0",@"2",@"1",@"3",@"0",@"2",@"1",@"3",@"0",@"2",@"1",@"3",@"0",@"2",@"1", nil];
     
 }
 
@@ -237,6 +258,16 @@
     
 }
 
+/**
+ *  调用该代理方法,实现查询到所点击的位置是否在某个球洞范围类,同时根据查询到的结果显示出更改球洞状态的视图
+ *
+ *  @param callout  callout
+ *  @param feature  feature 点击到的位置的特征属性
+ *  @param layer    layer 点击的图层
+ *  @param mapPoint mapPoint 点击点
+ *
+ *  @return return value 返回NO,为了不显示callout视图
+ */
 - (BOOL)callout:(AGSCallout *)callout willShowForFeature:(id<AGSFeature>)feature layer:(AGSLayer<AGSHitTestable> *)layer mapPoint:(AGSPoint *)mapPoint
 {
     //
@@ -253,13 +284,8 @@
             if (results.count) {
                 AGSGDBFeature *curFeatrue = results[0];
                 NSDictionary *curDic = [curFeatrue allAttributes];
-                
-//                AGSSimpleFillSymbol *fillSymbolView = [[AGSSimpleFillSymbol alloc] initWithColor:[[UIColor whiteColor] colorWithAlphaComponent:0.15] outlineColor:[UIColor blueColor]];
-//                AGSGraphic *holeGraphic = [[AGSGraphic alloc] initWithGeometry:curDic[@"Shape"] symbol:fillSymbolView attributes:nil];
-//                [weakSelf.selectHoleGraphicLayer addGraphic:holeGraphic];
                 //将选择的球洞放大到屏幕中央
                 [_CoursemapView zoomToGeometry:curDic[@"Shape"] withPadding:120 animated:YES];
-                
                 //
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"showTheHoleFunction" object:self userInfo:nil];
@@ -329,20 +355,54 @@
             [weakSelf.graphicLayer addGraphic:holeGraphic];
         }
         
-        
-        
-        
-        
-        
-        
     }];
+    //
+//    [self displayAlltheGroupPosition];
+    
+}
+/**
+ *  构建模拟的球组GPS定位点
+ *  获取到的数据还得通过循环给组装起来
+ */
+- (void)constructThePosition
+{
+//    groupPositionMarkArray
+    groupPositionMarkArray = [[NSMutableArray alloc] initWithObjects:[[AGSPoint alloc] initWithX:106.28256131500 y:29.49389984490 spatialReference:[AGSSpatialReference wgs84SpatialReference]],[[AGSPoint alloc] initWithX:106.28256669700 y:29.49432700910 spatialReference:[AGSSpatialReference wgs84SpatialReference]],[[AGSPoint alloc] initWithX:106.28281553500 y:29.49458953090 spatialReference:[AGSSpatialReference wgs84SpatialReference]],[[AGSPoint alloc] initWithX:106.28296532100 y:29.49592164420 spatialReference:[AGSSpatialReference wgs84SpatialReference]],[[AGSPoint alloc] initWithX:106.28165696300 y:29.49617591050 spatialReference:[AGSSpatialReference wgs84SpatialReference]],[[AGSPoint alloc] initWithX:106.28128793600 y:29.49595571510 spatialReference:[AGSSpatialReference wgs84SpatialReference]],[[AGSPoint alloc] initWithX:106.28060691900 y:29.49565737550 spatialReference:[AGSSpatialReference wgs84SpatialReference]],[[AGSPoint alloc] initWithX:106.27988107400 y:29.49521089300 spatialReference:[AGSSpatialReference wgs84SpatialReference]], nil];
+    
+}
+/**
+ *  在graphicLayer上边绘制GPS模拟的球组所在的GPS定位点
+ *  当从服务器上获取到的GPS实时数据时,更新GPS显示点,步骤是先把graphicLayer的所有图层给移除掉,之后再根据所获取到的数据来进行球洞状态对应的球洞的图层的刷新（即是重新添加当前的graphic到graphicLayer上）
+ */
+- (void)displayAllTheGroupPosition
+{
+    //create a marker symbol to be used by our Graphic
+    AGSSimpleMarkerSymbol *myMarkerSymbol =
+    [AGSSimpleMarkerSymbol simpleMarkerSymbol];
+    myMarkerSymbol.color = [UIColor redColor];
+    
+    AGSGeometryEngine *geoEngine = [[AGSGeometryEngine alloc] init];
+    //构建几个模拟的位置
+    [self constructThePosition];
+    
+    //
+    for (AGSPoint *currentPoint in groupPositionMarkArray) {
+        AGSPoint *markPoint = (AGSPoint *)[geoEngine projectGeometry:currentPoint toSpatialReference:self.CoursemapView.spatialReference];
+        
+        AGSGraphic* myGraphic =
+        [AGSGraphic graphicWithGeometry:markPoint
+                                 symbol:myMarkerSymbol
+                             attributes:nil];
+        
+        //Add the graphic to the Graphics layer
+        [_graphicLayer addGraphic:myGraphic];
+    }
     
 }
 
 - (void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint features:(NSDictionary *)features
 {
     NSLog(@"mappoint:%@",mappoint);
-    
     
 }
 
@@ -355,19 +415,11 @@
     
 }
 
+/**
+ *  显示出所点击球洞的修改球洞功能(是否为起始球洞,球洞运行与否)的视图
+ */
 - (void)createCourseStateViews
 {
-//    _backHalfAplphaView = [[UIView alloc] initWithFrame:self.view.bounds];
-//    _backHalfAplphaView.backgroundColor = [UIColor blackColor];
-//    _backHalfAplphaView.alpha = 0.3;
-//    [self.view addSubview:_backHalfAplphaView];
-//    
-//    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissCourseStateViews)];
-//    tapGes.numberOfTapsRequired = 1;
-//    tapGes.delegate = self;
-//    [_backHalfAplphaView addGestureRecognizer:tapGes];
-    
-    
     HoleFunctionChangeView *holeFunctionView;
     
     if ([holeFunctionView holeFunctionViewisShowing]) {
@@ -384,6 +436,11 @@
     
 }
 
+/**
+ *  点击了球洞之后,通过通知中心来处理创建修改球洞功能的视图，通过判断通知的名称来创建相应的视图
+ *
+ *  @param notification notification 相应的通知
+ */
 - (void)changeCourseHoleStateResponse:(NSNotification *)notification
 {
     if ([notification.name isEqualToString:@"showTheHoleFunction"]) {
@@ -394,6 +451,9 @@
     
 }
 
+/**
+ *  隐藏视图
+ */
 - (void)dismissCourseStateViews
 {
     
@@ -440,10 +500,15 @@
     
 }
 
-
+/**
+ *  建组按钮,此处是用来添加模拟的所有球组的GPS位置点
+ *
+ *  @param sender sender description
+ */
 - (IBAction)SubFunctionSelectFuntion:(UIButton *)sender {
     
 //    [self createCourseStateViews];
+    [self displayAllTheGroupPosition];
     
 }
 
@@ -454,7 +519,7 @@
  */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 18;
+    return holeNameArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -478,16 +543,21 @@
     return 64.0f;
 }
 
+/**
+ *  该方法现在没有用
+ *
+ *  @param state        state description
+ *  @param contentFrame contentFrame description
+ *
+ *  @return return value description
+ */
 - (UIView *)contentViewSetting:(NSInteger)state andFrame:(CGRect)contentFrame
 {
     UIView *InContentView = [[UIView alloc] initWithFrame:CGRectMake(100, contentFrame.origin.y, 80, contentFrame.size.height)];
-//    InContentView.backgroundColor = [UIColor blackColor];
+    
     UILabel *groupStateLabel = [[UILabel alloc] initWithFrame:CGRectMake(InContentView.frame.origin.x, 0, 20, 44)];
     UILabel *groupCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(InContentView.frame.origin.x  + 40, 0, 35, 44)];
     //
-    groupStateLabel.font = [UIFont systemFontOfSize:14.0];
-    groupStateLabel.textColor = [UIColor whiteColor];
-    
     groupCountLabel.font = [UIFont systemFontOfSize:10];
     groupCountLabel.textColor = [UIColor whiteColor];
     const CGFloat fontSize = 24.0;
@@ -552,120 +622,83 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger sectionNumber;
-    sectionNumber = indexPath.section;
-    NSString *cellIdentifier = [NSString stringWithFormat:@"cell%ld",sectionNumber];
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//    static NSString *customTableIdentifier = @"customIdentifierCell";
     
-    UITableViewCell *eachCell = [tableView cellForRowAtIndexPath:indexPath];
-    
-    if (eachCell == nil) {
-        eachCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    CustomTableViewCell *cell = (CustomTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    if (cell == nil)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
     }
     
-    //
-    if (indexPath.section%5 == 0) {
-        eachCell.backgroundColor = [UIColor colorWithRed:1.0 green:181/255.0 blue:1/255.0 alpha:1.0];
-        //
-        eachCell.selectedBackgroundView = [[UIView alloc] initWithFrame:eachCell.frame];
-        eachCell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:1.0 green:181/255.0 blue:1/255.0 alpha:1.0];
-        
-    }
-    //
-    if (indexPath.section%5 == 1) {
-        eachCell.backgroundColor = [UIColor colorWithRed:86/255.0 green:219/255.0 blue:109/255.0 alpha:1.0];
-        //
-        eachCell.selectedBackgroundView = [[UIView alloc] initWithFrame:eachCell.frame];
-        eachCell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:86/255.0 green:219/255.0 blue:109/255.0 alpha:1.0];
-        
-    }
-    //
-    if (indexPath.section%5 == 2) {
-        eachCell.backgroundColor = [UIColor colorWithRed:238/255.0 green:76/255.0 blue:109/255.0 alpha:1.0];
-        //
-        eachCell.selectedBackgroundView = [[UIView alloc] initWithFrame:eachCell.frame];
-        eachCell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:238/255.0 green:76/255.0 blue:109/255.0 alpha:1.0];
-        
-    }
-    //
-    if (indexPath.section%5 == 3) {
-        eachCell.backgroundColor = [UIColor colorWithRed:181/255.0 green:181/255.0 blue:181/255.0 alpha:1.0];
-        //
-        eachCell.selectedBackgroundView = [[UIView alloc] initWithFrame:eachCell.frame];
-        eachCell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:181/255.0 green:181/255.0 blue:181/255.0 alpha:1.0];
-        
-    }
-    //
-    if (indexPath.section%5 == 4) {
-        eachCell.backgroundColor = [UIColor colorWithRed:86/255.0 green:219/255.0 blue:109/255.0 alpha:1.0];
-        //
-        eachCell.selectedBackgroundView = [[UIView alloc] initWithFrame:eachCell.frame];
-        eachCell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:86/255.0 green:219/255.0 blue:109/255.0 alpha:1.0];
-        
-    }
-    //
-    NSInteger sectionNum = indexPath.section + 1;
-    NSString *holeNameStr = [NSString stringWithFormat:@"%2ld洞",(long)sectionNum];
-    eachCell.layer.cornerRadius = 5;
     
-    eachCell.textLabel.text = holeNameStr;
-    eachCell.textLabel.textColor = [UIColor whiteColor];
-    eachCell.textLabel.font = [UIFont systemFontOfSize:10];
-//    cell.textLabel.attributedText
+    cell.holeName.font = [UIFont systemFontOfSize:10];
+    
+    NSString *holeNameStr = holeNameArray[indexPath.section];
+    cell.holeName.text = holeNameStr;
+    
     NSString *string = holeNameStr;
     const CGFloat fontSize = 29.0;
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:string];
-//    NSUInteger length = [string length];
+    //    NSUInteger length = [string length];
     //设置字体
     UIFont *baseFont = [UIFont systemFontOfSize:fontSize];
-    [attrString addAttribute:NSFontAttributeName value:baseFont range:NSMakeRange(0, 2)];//设置第一个字符的字体
-    eachCell.textLabel.attributedText = attrString;
+    [attrString addAttribute:NSFontAttributeName value:baseFont range:NSMakeRange(0, 2)];//设置球洞号的字体大小
+    cell.holeName.attributedText = attrString;
+    
+    cell.holeState.text = holeStateArray[indexPath.section];
     
     //
-    UIButton *accessoryButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    accessoryButton.imageView.image = [UIImage imageNamed:@"messege_mapData.png"];
-    [accessoryButton setImage:[UIImage imageNamed:@"more_mapData.png"] forState:UIControlStateNormal];
-    eachCell.accessoryView = accessoryButton;//[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"more_mapData.png"]];
-    
-    //
-//    for (UIView *subView in cell.contentView.subviews) {
-//        [subView removeFromSuperview];
-//    }
-    //
-    UILabel *groupState = [[UILabel alloc] initWithFrame:CGRectMake(100, eachCell.frame.origin.y, 40, eachCell.frame.size.height)];
-    groupState.center = CGPointMake(120, eachCell.frame.origin.y + eachCell.frame.size.height/2);
-    groupState.font = [UIFont systemFontOfSize:14.0];
-    
-    groupState.text = @"缓堵";
-    groupState.textAlignment = NSTextAlignmentCenter;
-    
-    groupState.textColor = [UIColor whiteColor];
-    //
-    UILabel *groupCount = [[UILabel alloc] initWithFrame:CGRectMake(191, eachCell.frame.origin.y, 80, eachCell.frame.size.height)];
-    groupCount.center = CGPointMake(231, eachCell.frame.origin.y + eachCell.frame.size.height/2);
-    groupCount.font = [UIFont systemFontOfSize:14.0];
-    
-    NSString *groupCountStr = @"3组球队";
-    groupCount.text = groupCountStr;
-    groupCount.textAlignment = NSTextAlignmentCenter;
-    
-    groupCount.textColor = [UIColor whiteColor];
-    //
+    NSString *holeCountStr = holeCountArray[indexPath.section];
+    cell.holeCount.text = holeCountStr;
     const CGFloat fontSizee = 24.0;
-    NSMutableAttributedString *attrStringg = [[NSMutableAttributedString alloc] initWithString:groupCountStr];
+    NSMutableAttributedString *attrStringg = [[NSMutableAttributedString alloc] initWithString:holeCountStr];
     //    NSUInteger length = [string length];
     //设置字体
     UIFont *baseFontt = [UIFont systemFontOfSize:fontSizee];
     [attrStringg addAttribute:NSFontAttributeName value:baseFontt range:NSMakeRange(0, 1)];//设置第一个字符的字体
-    groupCount.attributedText = attrStringg;
+    cell.holeCount.attributedText = attrStringg;
     
+    //设置cell的颜色 0:无人 ;1:正常 ;2:缓堵 ;3:非常拥堵
+    UIView *selectedBackView = [[UIView alloc] init];
+    [selectedBackView setFrame:cell.frame];
     
-    [eachCell.contentView addSubview:groupCount];
-    [eachCell.contentView addSubview:groupState];
+    switch ([holeStateNumArray[indexPath.section] integerValue]) {
+        case 0://no group
+            [cell setBackgroundColor:[UIColor colorWithRed:181/255.0 green:181/255.0 blue:181/255.0 alpha:1.0]];
+            [selectedBackView setBackgroundColor:[UIColor colorWithRed:181/255.0 green:181/255.0 blue:181/255.0 alpha:1.0]];
+            cell.selectedBackgroundView = selectedBackView;
+            
+            break;
+            
+        case 1://正常
+            cell.backgroundColor = [UIColor colorWithRed:86/255.0 green:219/255.0 blue:109/255.0 alpha:1.0];
+            [selectedBackView setBackgroundColor:[UIColor colorWithRed:86/255.0 green:219/255.0 blue:109/255.0 alpha:1.0]];
+            cell.selectedBackgroundView = selectedBackView;
+            
+            break;
+            
+        case 2://缓堵
+            cell.backgroundColor = [UIColor colorWithRed:1.0 green:181/255.0 blue:1/255.0 alpha:1.0];
+            [selectedBackView setBackgroundColor:[UIColor colorWithRed:1.0 green:181/255.0 blue:1/255.0 alpha:1.0]];
+            cell.selectedBackgroundView = selectedBackView;
+            
+            break;
+            
+        case 3://非常拥堵
+            cell.backgroundColor = [UIColor colorWithRed:238/255.0 green:76/255.0 blue:109/255.0 alpha:1.0];
+            [selectedBackView setBackgroundColor:[UIColor colorWithRed:238/255.0 green:76/255.0 blue:109/255.0 alpha:1.0]];
+            cell.selectedBackgroundView = selectedBackView;
+            
+            
+            
+            break;
+            
+        default:
+            break;
+    }
     
-    
-    
-    return eachCell;
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -674,20 +707,20 @@
     //
     static NSIndexPath *oldIndexPath;
     
-    NSLog(@"did select indexPath.row:%ld",(long)indexPath.row);
+//    NSLog(@"did select indexPath.row:%ld",(long)indexPath.row);
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     
-    NSLog(@"cell.frame.origin.y:%f  and size.height:%f",selectedCell.frame.origin.y,selectedCell.frame.size.height);
+//    NSLog(@"cell.frame.origin.y:%f  and size.height:%f",selectedCell.frame.origin.y,selectedCell.frame.size.height);
     //
     if (oldIndexPath == nil) {
         oldIndexPath = indexPath;
         //
         [self createAndDisEachHoleInfo:selectedCell.frame];
         //
-        selectedCell.accessoryView = nil;
-        UIButton *accessoryButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-        [accessoryButton setImage:[UIImage imageNamed:@"back_mapData.png"] forState:UIControlStateNormal];
-        selectedCell.accessoryView = accessoryButton;
+//        selectedCell.accessoryView = nil;
+//        UIButton *accessoryButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+//        [accessoryButton setImage:[UIImage imageNamed:@"back_mapData.png"] forState:UIControlStateNormal];
+//        selectedCell.accessoryView = accessoryButton;
         
     }
     else
@@ -698,20 +731,20 @@
             //
             [self dismissTheEachHoleInfoView];
             //
-            UITableViewCell *oldselectedCell = [tableView cellForRowAtIndexPath:indexPath];
-            oldselectedCell.accessoryView = nil;
-            UIButton *oldaccessoryButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-            [oldaccessoryButton setImage:[UIImage imageNamed:@"more_mapData.png"] forState:UIControlStateNormal];
-            oldselectedCell.accessoryView = oldaccessoryButton;
+//            UITableViewCell *oldselectedCell = [tableView cellForRowAtIndexPath:indexPath];
+//            oldselectedCell.accessoryView = nil;
+//            UIButton *oldaccessoryButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+//            [oldaccessoryButton setImage:[UIImage imageNamed:@"more_mapData.png"] forState:UIControlStateNormal];
+//            oldselectedCell.accessoryView = oldaccessoryButton;
             
         }
         else
         {
-            UITableViewCell *oldselectedCell = [tableView cellForRowAtIndexPath:oldIndexPath];
-            oldselectedCell.accessoryView = nil;
-            UIButton *oldaccessoryButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-            [oldaccessoryButton setImage:[UIImage imageNamed:@"more_mapData.png"] forState:UIControlStateNormal];
-            oldselectedCell.accessoryView = oldaccessoryButton;
+//            UITableViewCell *oldselectedCell = [tableView cellForRowAtIndexPath:oldIndexPath];
+//            oldselectedCell.accessoryView = nil;
+//            UIButton *oldaccessoryButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+//            [oldaccessoryButton setImage:[UIImage imageNamed:@"more_mapData.png"] forState:UIControlStateNormal];
+//            oldselectedCell.accessoryView = oldaccessoryButton;
             //
             oldIndexPath = indexPath;
             [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -762,13 +795,21 @@
     }
 }
 
+/**
+ *  给tableview调整整个可以滚动的高度
+ *
+ *  @param scrollView scrollView description
+ */
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     _courseDataDisTable.contentSize = CGSizeMake(_courseDataDisTable.frame.size.width, 1560);
 }
 
-
-
+/**
+ *  创建点击球洞的各个组的子视图
+ *
+ *  @param theFrame theFrame 获取到当前cell的frame,从而获取到子视图的位置
+ */
 - (void)createAndDisEachHoleInfo:(CGRect)theFrame
 {
 //    __weak typeof(self) weakSelf = self;
@@ -785,18 +826,28 @@
     
 }
 
+/**
+ *  隐藏掉各个球洞的球组的子视图
+ */
 - (void)dismissTheEachHoleInfoView
 {
     [holeDetailView holeDetailDismiss];
 }
 
+/**
+ *  创建导航栏右侧的按钮（搜索按钮）
+ */
 - (void)creatNavBarItem
 {
     _rightItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStyleDone target:self action:@selector(changeDisforRightBar)];
     _rightItem.image = [UIImage imageNamed:@"search_mapData.png"];
     _rightItem.tintColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem = _rightItem;
 }
 
+/**
+ *  球场状态的数据页的一些设置
+ */
 - (void)mapdataTypeSetting
 {
     //hide mapview
@@ -805,10 +856,6 @@
     _courseDataDisTable.hidden = NO;
     //
     _addGroupButton.enabled = NO;
-    //
-    [self creatNavBarItem];
-    
-    self.navigationItem.rightBarButtonItem = _rightItem;
     
 }
 
@@ -843,13 +890,11 @@
         }
     }
     
-    
-    
     switch (sender.selectedSegmentIndex) {
         //mapMode
         case 0:
-            self.navigationItem.rightBarButtonItem = nil;
-            self.navigationItem.titleView = nil;
+//            self.navigationItem.rightBarButtonItem = nil;
+//            self.navigationItem.titleView = nil;
             //
             _CoursemapView.hidden = NO;
             self.segmentBackView.alpha = 0.3;
