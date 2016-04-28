@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <TencentOpenAPI/TencentApiInterface.h>
 
-#define UMengAppKey @"56fb9d5a67e58e1ec8002126"
+#define UMengAppKey     @"56fb9d5a67e58e1ec8002126"
+
+#define JPushKey        @""
+#define JPushchannel    @""
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

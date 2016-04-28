@@ -19,6 +19,6 @@
 - (BOOL)holeFunctionViewisShowing;
 
 
-@property (assign) id<CourseStateViewControllerDelegate> delegate;
+@property (weak) id<CourseStateViewControllerDelegate> delegate;
 
 @end

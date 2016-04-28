@@ -74,7 +74,6 @@
 //
 @property (strong, nonatomic) UIBarButtonItem        *rightItem;
 //
-//@property (strong, nonatomic) NSMutableArray         *
 
 
 
@@ -143,7 +142,9 @@
 
 - (void)dealloc
 {
-    [_CoursemapView removeObserver:self forKeyPath:@"location"];
+    [_CoursemapView.locationDisplay removeObserver:self forKeyPath:@"location"];
+    [_CoursemapView.locationDisplay removeObserver:self forKeyPath:@"autoPanMode"];
+    
 }
 
 
@@ -216,7 +217,7 @@
     //地图中的当前GPS定位点的位置信息点的显示
     [self.CoursemapView.locationDisplay addObserver:self forKeyPath:@"autoPanMode" options:(NSKeyValueObservingOptionNew) context:NULL];
     //Listen to KVO notifications for map scale property
-    [self.CoursemapView addObserver:self
+    [self.CoursemapView.locationDisplay addObserver:self
                    forKeyPath:@"location"
                       options:(NSKeyValueObservingOptionNew)
                       context:NULL];
@@ -400,9 +401,15 @@
     
 }
 
+//- (void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint features:(NSDictionary *)features
+//{
+//    NSLog(@"mappoint:%@",mappoint);
+//    
+//}
+
 - (void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint features:(NSDictionary *)features
 {
-    NSLog(@"mappoint:%@",mappoint);
+    NSLog(@"features:%@",features);
     
 }
 

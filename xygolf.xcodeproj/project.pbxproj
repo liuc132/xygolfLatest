@@ -60,6 +60,8 @@
 		5B98F4301CBF45F300B95E93 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B98F42E1CBF45F300B95E93 /* TencentOpenAPI.framework */; };
 		5BAF70471CC5F20100F1FA3D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BAF70491CC5F20100F1FA3D /* InfoPlist.strings */; };
 		5BAF704E1CC61D6800F1FA3D /* ErrorStateAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF704D1CC61D6800F1FA3D /* ErrorStateAlertView.m */; };
+		5BB6C5B11CD0C13E00BA1B6C /* jpush-ios-2.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BB6C5AF1CD0C13E00BA1B6C /* jpush-ios-2.1.0.a */; };
+		5BB6C5B31CD0C1A000BA1B6C /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BB6C5B21CD0C1A000BA1B6C /* PushConfig.plist */; };
 		5BBE4D4C1CBE4C81002F622C /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE4D4B1CBE4C81002F622C /* PersonalCenterViewController.m */; };
 		5BD210E61CAA29E8001A8F97 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD210E51CAA29E8001A8F97 /* Security.framework */; };
 		5BD210E81CAA29F7001A8F97 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD210E71CAA29F7001A8F97 /* libiconv.tbd */; };
@@ -184,6 +186,9 @@
 		5BAF704A1CC5FC6800F1FA3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5BAF704C1CC61D6800F1FA3D /* ErrorStateAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ErrorStateAlertView.h; path = xygolf/customView/ErrorStateAlertView.h; sourceTree = "<group>"; };
 		5BAF704D1CC61D6800F1FA3D /* ErrorStateAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ErrorStateAlertView.m; path = xygolf/customView/ErrorStateAlertView.m; sourceTree = "<group>"; };
+		5BB6C5AF1CD0C13E00BA1B6C /* jpush-ios-2.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.0.a"; sourceTree = "<group>"; };
+		5BB6C5B01CD0C13E00BA1B6C /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		5BB6C5B21CD0C1A000BA1B6C /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		5BBE4D4A1CBE4C81002F622C /* PersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalCenterViewController.h; path = viewController/PersonalCenterViewController.h; sourceTree = "<group>"; };
 		5BBE4D4B1CBE4C81002F622C /* PersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonalCenterViewController.m; path = viewController/PersonalCenterViewController.m; sourceTree = "<group>"; };
 		5BD210E51CAA29E8001A8F97 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -211,6 +216,7 @@
 				5B98F4301CBF45F300B95E93 /* TencentOpenAPI.framework in Frameworks */,
 				5BD210EA1CAA29FE001A8F97 /* SystemConfiguration.framework in Frameworks */,
 				5BD210E81CAA29F7001A8F97 /* libiconv.tbd in Frameworks */,
+				5BB6C5B11CD0C13E00BA1B6C /* jpush-ios-2.1.0.a in Frameworks */,
 				5BD210E61CAA29E8001A8F97 /* Security.framework in Frameworks */,
 				5B0CFF201CABD5B8008D923A /* libMobClickLibrary.a in Frameworks */,
 			);
@@ -409,6 +415,7 @@
 				5B3FA1D41CA2249100D8FE54 /* main.m */,
 				5B10AA941CBCF0E7000FFAF3 /* xygolfmacroHeader.h */,
 				5BAF70491CC5F20100F1FA3D /* InfoPlist.strings */,
+				5BB6C5B21CD0C1A000BA1B6C /* PushConfig.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -603,6 +610,15 @@
 			name = errorstateView;
 			sourceTree = "<group>";
 		};
+		5BB6C5AE1CD0C11400BA1B6C /* JPush */ = {
+			isa = PBXGroup;
+			children = (
+				5BB6C5AF1CD0C13E00BA1B6C /* jpush-ios-2.1.0.a */,
+				5BB6C5B01CD0C13E00BA1B6C /* JPUSHService.h */,
+			);
+			name = JPush;
+			sourceTree = "<group>";
+		};
 		5BBE4D461CBE4BEB002F622C /* personalCenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -624,6 +640,7 @@
 		5BD210DE1CAA25B0001A8F97 /* framework */ = {
 			isa = PBXGroup;
 			children = (
+				5BB6C5AE1CD0C11400BA1B6C /* JPush */,
 				5B98F42D1CBF45F300B95E93 /* TencentOpenApi_IOS_Bundle.bundle */,
 				5B98F42E1CBF45F300B95E93 /* TencentOpenAPI.framework */,
 				5BC8BFA61CBBE22D007344AC /* afnetworking */,
@@ -733,6 +750,7 @@
 				5B942ACB1CAD172C00F684E8 /* Weather_phenomenonID.plist in Resources */,
 				5B3FA1E31CA2249100D8FE54 /* LaunchScreen.storyboard in Resources */,
 				5B942ACC1CAD172C00F684E8 /* weather_windDirectionID.plist in Resources */,
+				5BB6C5B31CD0C1A000BA1B6C /* PushConfig.plist in Resources */,
 				5B40D84F1CC9F5AD0033CD01 /* offlineMapData.bundle in Resources */,
 				5B3FA1E01CA2249100D8FE54 /* Assets.xcassets in Resources */,
 				5B98F42F1CBF45F300B95E93 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,

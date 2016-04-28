@@ -11,9 +11,12 @@
 #import "TNPanNavigationController.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "MobClick.h"
+#import "JPUSHService.h"
 
 
 @interface AppDelegate ()
+
+@property (assign, nonatomic) BOOL  JPushisProduction;
 
 @end
 
@@ -36,10 +39,36 @@
 //    self.window.rootViewController = theNav;
 //    
 //    [self.window makeKeyAndVisible];
+    _JPushisProduction = YES;
+    
+    [JPUSHService setupWithOption:launchOptions appKey:JPushKey channel:JPushchannel apsForProduction:_JPushisProduction];
     
     
     return YES;
 }
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    [JPUSHService registerDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    [JPUSHService handleRemoteNotification:userInfo];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    [JPUSHService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+    
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"jpush register fail error:%@",error.localizedDescription);
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

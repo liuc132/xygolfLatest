@@ -69,13 +69,8 @@
     //
     self.reachabilityManager = [AFNetworkReachabilityManager sharedManager];
     [_reachabilityManager startMonitoring];
+
     
-//    self.afhttpManager = [AFHTTPSessionManager manager];
-//    self.getCheckMsgOrWait.titleLabel.text = @"获取验证码";
-//    self.getCheckMsgOrWait.titleLabel.textColor = [UIColor blueColor];
-//    self.getCheckMsgOrWait.enabled = YES;
-//    
-//    self.msgCodeTextField.placeholder = @"获取验证码...";
     
     //
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
@@ -91,8 +86,6 @@
 
 - (void)backToLogInView
 {
-//    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-//    [self dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
